@@ -1,3 +1,4 @@
+
 select 
 	*
 from 
@@ -24,6 +25,7 @@ order by
 	location
 	,date
 
+
 -- Looking at Total Cases vs Total Deaths
 -- Shows the likelyhood of dying if you contract covid in your country
 select
@@ -41,6 +43,7 @@ and
 order by
 	location
 	,date
+
 
 -- Looking at Total Cases vs Population
 -- Shows what percentage of population got covid
@@ -60,6 +63,7 @@ order by
 	location
 	,date
 
+
 -- Looking at countries with Highest Infection Rate compared to Population
 select
 	location
@@ -78,6 +82,7 @@ group by
 order by
 	HadCovidPercentage desc
 
+
 --LETS BREAK THINGS DOWN BY CONTINENT -- this one is inaccurate. the following query is accurate.
 ----select
 ----	continent
@@ -91,8 +96,9 @@ order by
 ----order by
 ----	TotalDeathCount desc 
 
--- accurate search breakdown by continent
--- showing continents with highest death count
+
+-- Accurate search breakdown by continent
+-- Showing continents with Highest Death Count
 select
 	location
 	,max(total_deaths) TotalDeathCount
@@ -124,7 +130,8 @@ group by
 order by
 	TotalDeathCount desc
 
--- global numbers
+
+-- Global numbers
 select
 	date 
 	,SUM(new_cases) NewCases
@@ -142,6 +149,7 @@ group by
 	date
 order by
 	date
+
 
 -- Total Cases To Date
 select
@@ -182,6 +190,7 @@ order by
 	location
 	,date
 
+
 -- USE CTE
 
 With PopVsVac (Continent, Location, Date, Population, New_vaccinations, RollingPeopleVaccinated)
@@ -210,6 +219,7 @@ select
 	,(RollingPeopleVaccinated/Population)*100
 from 
 	PopVsVac
+
 
 -- TEMP TABLE
 
@@ -290,6 +300,7 @@ and
 	location not like '%income%'
 group by
 	location
+
 
 select 
 	*
