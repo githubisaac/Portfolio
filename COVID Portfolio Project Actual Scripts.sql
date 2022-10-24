@@ -112,6 +112,8 @@ and
 	location not like '%european union%'
 and 
 	location not like '%world%'
+and
+	location not like '%international%'
 group by
 	location
 order by
