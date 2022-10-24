@@ -110,6 +110,8 @@ and
 	location not like '%income%'
 and
 	location not like '%european union%'
+and 
+	location not like '%world%'
 group by
 	location
 order by
