@@ -1,0 +1,91 @@
+
+-- Queries used for Tableau Project
+
+
+-- 1. Total cases to date
+
+select
+	SUM(new_cases) TotalCases
+	,SUM(new_deaths) TotalDeaths
+	,(SUM(new_deaths)/SUM(new_cases))*100 DeathPercentage
+from
+	PortfolioProject1..CovidDeaths
+where
+	continent is not null
+
+-- Just a double check based off the data provided.
+-- The numbers are extremely close so we will keep them. The second includes the "International" location.
+
+select
+	SUM(new_cases) TotalCases
+	,SUM(new_deaths) TotalDeaths
+	,(SUM(new_deaths)/SUM(new_cases))*100 DeathPercentage
+from
+	PortfolioProject1..CovidDeaths
+where
+	location like '%world%'
+
+
+-- 2.
+
+-- We take these out as we want to stay consistent
+-- European Union is part of Europe
+
+select
+	location
+	,max(total_deaths) TotalDeathCount
+from
+	PortfolioProject1..CovidDeaths
+where 
+	continent is null
+and
+	location not like '%income%'
+and
+	location not like '%european union%'
+and 
+	location not like '%world%'
+and
+	location not like '%international%'
+group by
+	location
+order by
+	TotalDeathCount desc 
+
+
+-- 3.
+
+select
+	location
+	,population
+	,max(total_cases) HighestInfectionCount
+	,max((total_cases/population)*100) HadCovidPercentage
+from
+	PortfolioProject1..CovidDeaths
+where
+	continent is not null
+group by
+	location
+	,population
+order by
+	HadCovidPercentage desc
+
+
+-- 4.
+
+select
+	location
+	,population
+	,date
+	,max(total_cases) HighestInfectionCount
+	,max((total_cases/population)*100) HadCovidPercentage
+from
+	PortfolioProject1..CovidDeaths
+where
+	continent is not null
+group by
+	location
+	,population
+	,date
+order by
+	HadCovidPercentage desc
+  
