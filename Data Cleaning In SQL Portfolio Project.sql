@@ -242,17 +242,17 @@ from
 
 update PortfolioProject1..nashvillehousing
 set SoldAsVacant = (case
-						when 
-							soldasvacant='Y'
-						then
-							'Yes'
-						when
-							soldasvacant='N'
-						then
-							'No'
-					else	
-						soldasvacant
-					end)
+			when 
+				soldasvacant='Y'
+			then
+				'Yes'
+			when
+				soldasvacant='N'
+			then
+				'No'
+		else	
+			soldasvacant
+		end)
 
 
 -- Check it worked
