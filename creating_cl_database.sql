@@ -4,7 +4,7 @@ create database cc
 -- Create the table where environmental data will be stored
 create table ec_log
 (
-	record_date datetime not null
+    record_date datetime not null
     ,initial nvarchar(50) not null
     ,clone_temp float
     ,clone_humidity float
@@ -22,7 +22,7 @@ create table ec_log
 
 -- Create a Stored Procedure for updating Environmental Control Data often and viewing updates
 CREATE PROCEDURE update_ec_log
-	@record_date datetime
+    @record_date datetime
     ,@initial nvarchar(50)
     ,@clone_temp float
     ,@clone_humidity float
@@ -88,51 +88,51 @@ EXEC update_ec_log '2022-03-05 07:00:00','SL',84,28.5,85.9,27.7,78.5,40.9,79.8,3
 -- Create table for Clone Development Tracking
 create table clone_development
 (
-	transplant_date datetime not null
-	,strain_id nvarchar(50) not null
-	,record_date datetime not null
+    transplant_date datetime not null
+    ,strain_id nvarchar(50) not null
+    ,record_date datetime not null
     ,initial nvarchar(50) not null
     ,moisture nvarchar(10)
     ,feed_ec float
     ,feed_ph float
-	,avg_height float
+    ,avg_height float
 )
 
 -- Create Stored Procedure for updating Clone Development Tracking often and viewing updates
 CREATE PROCEDURE update_clone_development
-	@transplant_date datetime
-	,@strain_id nvarchar(50)
-	,@record_date datetime
+    @transplant_date datetime
+    ,@strain_id nvarchar(50)
+    ,@record_date datetime
     ,@initial nvarchar(50)
     ,@moisture nvarchar(10)
     ,@feed_ec float
     ,@feed_ph float
-	,@avg_height float
+    ,@avg_height float
 as
 
 BEGIN 
 
 insert into clone_development
 (
-	transplant_date
-	,strain_id
-	,record_date
+    transplant_date
+    ,strain_id
+    ,record_date
     ,initial
     ,moisture
     ,feed_ec
     ,feed_ph
-	,avg_height
+    ,avg_height
 )
 values
 (
-	@transplant_date
-	,@strain_id
-	,@record_date
+    @transplant_date
+    ,@strain_id
+    ,@record_date
     ,@initial
     ,@moisture
     ,@feed_ec
     ,@feed_ph
-	,@avg_height
+    ,@avg_height
 )
 
 select
