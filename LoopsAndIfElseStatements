@@ -1,0 +1,41 @@
+Return True if the given string contains an appearance of "xyz" where the xyz
+is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not.
+
+def xyz_there(str):
+  if str[:3]=='xyz':
+    return True
+  for i in range(len(str)-3):
+    if str[i]<>'.' and str[i+1:i+4]=='xyz':
+      return True
+  return False
+
+____________________________________________________________
+
+We want make a package of goal kilos of chocolate. We have small bars (1 kilo each)
+and big bars (5 kilos each). Return the number of small bars to use, assuming we
+always use big bars before small bars. Return -1 if it can't be done.
+
+def make_chocolate(small, big, goal):
+  big_req=goal//5
+  if big_req>=big:
+    goal-=big*5
+  else:
+    goal-=big_req*5
+  if goal>small:
+    return -1
+  else:
+    return goal
+
+____________________________________________________________
+
+Return True if the string "cat" and "dog" appear the same number of times in the given string.
+
+def cat_dog(str):
+  cat_count=0
+  dog_count=0
+  for i in range(len(str)):
+    if str[i:i+3]=='cat':
+      cat_count+=1
+    if str[i:i+3]=='dog':
+      dog_count+=1
+  return cat_count==dog_count
